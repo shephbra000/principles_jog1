@@ -2,6 +2,7 @@
 import pygame, random
 
 # Initialize pygame
+pygame.init()
 # TODO: call pygame.init()
 
 # Set display window
