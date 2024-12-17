@@ -1,41 +1,28 @@
 import pygame, random
 
-
 pygame.init()
 
-
-# Set display window
-
 WINDOW_WIDTH = 600
-
 WINDOW_HEIGHT = 600
 
 display_surface = pygame.display.set_mode(WINDOW_WIDTH, WINDOW_HEIGHT)
 
-# in a tuple of WINDOW_WIDTH and WINDOW_HEIGHT
-
 pygame.display.set_caption("~~Snake~~")
-
-# Set FSP and clock
 
 FPS = 20
 
 clock = pygame.time.Clock()
-# Set game values
 
 SNAKE_SIZE = 20
 
 head_x = WINDOW_WIDTH // 2
-
 head_y = WINDOW_HEIGHT // 2 + 100
-
 snake_dx = 0
-
 snake_dy = 0
 
 score = 0
 
-# Set colors
+
 
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
@@ -43,10 +30,8 @@ WHITE = (255, 255, 255)
 DARKGREEN = (10, 50, 10)
 DARKRED = (150, 0, 0)
 
-# Set fonts
 font = pygame.font.SysFont('gabriola', 48)
 
-# Set text
 gabriola: True
 
 def create_text_and_rect(text, GREEN, DARKRED, **locations):
@@ -61,7 +46,7 @@ def create_text_and_rect(text, GREEN, DARKRED, **locations):
 if location == "topleft":
 
 
-title_text, title_rect = (create_text_and_rect
+ title_text, title_rect = (create_text_and_rect
 ("~~Snake~~", GREEN, DARKRED, center=(WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)))
 
 
@@ -70,54 +55,35 @@ Variable: score_text
 "Score: " + str(score)
 
 color: GREEN
-
 background: DARKRED
 
-topleft=(10, 10)
+topleft = (10, 10)
 
 
 Variable: game_over_text
 Rect: game_over_rect
 
 PHRASE: "GAMEOVER"
-
 Color: RED
-
 Background: DARKGREEN
 
 Position: center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2)
-
-
 Rect: continue_rect
-
 PHRASE: "Press any key to play again"
-
 Color = RED
-
 Background = DARKGREEN
-
 Position: center = (WINDOW_WIDTH // 2, WINDOW_HEIGHT // 2 + 64)
 
 
-# Set sounds and music
-
-
-
-# Set images (in this case, use simple rects...so just create their coordinates)
-# For a rectangle you need (top-left x, top-left y, width, height)
-
 apple_coord = 500, 500, SNAKE_SIZE, SNAKE_SIZE
-
 apple_rect = pygame.draw.rect(display_surface, RED, apple_coord)
 
 
 head_coord = (head_x, head_y, SNAKE_SIZE, SNAKE_SIZE)
-
 head_rect = pygame.draw.rect(display_surface, GREEN, head_coord)
 
 
 body_coords = []
-
 
 # The main game loop
 running = True
@@ -162,7 +128,7 @@ def handle_snake():
     # TODO: add snake_dx to head_x
     # TODO: add snake_dy to head_y
     # TODO: set head_coord to (head_x, head_y, SNAKE_SIZE, SNAKE_SIZE)
-
+   pass # TODO: remove this pass when done.
 def reset_game_after_game_over(event):
     global is_paused, score, head_x, head_y, head_coord, body_coords, snake_dx, snake_dy
     # TODO: if event.type is equal to pygame.KEYDOWN
@@ -212,7 +178,8 @@ def check_collisions():
         # TODO: set apple_y to random.randint(0, WINDOW_HEIGHT - SNAKE_SIZE)
         # TODO: set apple_coord to (apple_x, apple_y, SNAKE_SIZE, SNAKE_SIZE)
         # TODO: call body_coords.append(head_coord)
-        pass # TODO: remove this pass when done.
+    body_coords.append(head_coord)
+
 
 def blit_hud():
     # TODO: call display_surface.blit(title_text, title_rect)
@@ -248,7 +215,8 @@ while running:
     # TODO: set score_text to font.render("Score: " + str(score), True, GREEN, DARKRED)
 
     # Fill the surface
-    # TODO: call display_surface.fill(WHITE)
+
+    display_surface.fill(WHITE)
 
     # Blit HUD
     blit_hud()
